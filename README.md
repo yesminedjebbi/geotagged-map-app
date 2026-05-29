@@ -1,37 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Geotagged Map App
 
-## Getting Started
+A fullstack web application that allows authenticated users to upload geotagged photos, visualize them on an interactive map, and interact through comments and AI-generated image descriptions.
 
-First, run the development server:
+Features
+User authentication (JWT)
+Upload geotagged images
+Extract GPS coordinates from image EXIF metadata
+Interactive map visualization with Leaflet
+Cloud image storage with Cloudinary
+AI-generated image descriptions
+Comment system for each photo
+Responsive dark UI
+Tech Stack
+Frontend
+Next.js
+React
+TypeScript
+Leaflet / React-Leaflet
+Backend
+Next.js API Routes
+Prisma ORM
+Database
+PostgreSQL (Neon)
+Authentication
+JWT Authentication
+Storage
+Cloudinary
+AI
+OpenAI API
+Project Structure
+src/
+ ├── app/
+ │    ├── api/
+ │    ├── login/
+ │    ├── signup/
+ │    ├── map/
+ │    └── upload/
+ │
+ ├── components/
+ │    ├──Map.tsx
+ │    └──UploadForm.tsx
+     
+ │
+ ├── lib/
+ │    ├── prisma.ts
+ │    ├── jwt.ts
+ │    ├── cloudinary.ts
+ │    └── ai.ts
+ │
+prisma/
+ └── schema.prisma
+Installation
 
-```bash
+Environment Variables
+
+Create a .env file:
+
+DATABASE_URL=your_neon_database_url
+
+JWT_SECRET=your_jwt_secret
+
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+OPENAI_API_KEY=your_openai_api_key
+Prisma Setup
+
+Generate Prisma client:
+
+npx prisma generate
+
+Run migrations:
+
+npx prisma migrate dev
+Run the Project
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Application runs on:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
+Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project can be deployed using:
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# geotagged-map-app" 
+Vercel (frontend + backend)
+Neon PostgreSQL
+Cloudinary
+Scalability Considerations
+Images are stored in Cloudinary instead of the database
+Only metadata and URLs are stored in PostgreSQL
+Leaflet markers can later be optimized using clustering
+Bounding-box queries can be added for large datasets
